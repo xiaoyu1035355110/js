@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    window.onload = function(){
+        var time = 366668;
+        var day;
+        var hour = Math.floor(Math.floor(time/60) / 60);
+        var minute = +Math.floor(time/60);
+        var second = time%60;
+
+        if(hour > 24){
+            day = hour % 24;
+            hour = hour % 24;
+        }
+
+        if(minute > 60){
+            minute = minute % 60;
+        }
+
+        alert(day+'天'+hour+'小时'+minute+'分'+second+'秒')
+    }
+</script>
+</body>
+</html>

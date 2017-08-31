@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            width:300px;
+            text-align: center;
+        }
+        table,
+        table *{
+            padding:0;
+            margin:0;
+        }
+        table thead{
+            height:35px;
+            line-height: 35px;
+            background:lightskyblue;
+        }
+        table tbody tr{
+            height:30px;
+            line-height: 30px;
+        }
+        table tbody tr:nth-child(even){
+            background: #c4e6e0;
+        }
+        table tbody tr:nth-child(odd){
+            background: #f5f5f5;
+        }
+        table tbody tr input{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<table cellspacing='0' cellpadding='0'>
+    <thead>
+        <tr>
+            <th>选中</th>
+            <th>歌名</th>
+            <th>作者</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="checkbox" /></td>
+            <td>张三的歌</td>
+            <td>张三</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" /></td>
+            <td>张三的歌</td>
+            <td>张三</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" /></td>
+            <td>张三的歌</td>
+            <td>张三</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" /></td>
+            <td>张三的歌</td>
+            <td>张三</td>
+        </tr>
+    </tbody>
+</table>
+<div>
+
+    <input type="checkbox"  id="select" />
+    <label for="select">全选</label>
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        var oBox = document.getElementsByTagName('table')[0];
+        var oBtn = document.getElementById('select');
+        var aInp = oBox.getElementsByTagName('input');
+        var oTbody = oBox.getElementsByTagName('tbody')[0];
+        var aTr = oTbody.getElementsByTagName('tr');
+        var num = 0;
+        var onOff = true;
+
+        for(var i=0;i<aInp.length;i++){
+            aInp[i].index = i;
+            oBtn.onclick = function(){
+                num = aInp.length;
+                if(!oBtn.checked && !onOff){
+                    onOff = false;
+                    num = 0;
+                    for(var i=0;i<aInp.length;i++){
+                        aInp[i].checked = false;
+                        if(i%2 === 0){
+                            aTr[i].style.background = '#f5f5f5'
+                        }else{
+                            aTr[i].style.background = '#c4e6e0'
+                        }
+                    }
+                }else{
+                    onOff = true;
+                    for(var i=0;i<aInp.length;i++){
+                        aInp[i].checked = true;
+                        aTr[i].style.background = '#ccc'
+                    }
+                }
+
+                if(num === aInp.length && onOff && oBtn.checked){
+                    onOff = false;
+                    for(var i=0;i<aInp.length;i++){
+                        aInp[i].checked = true;
+                        aTr[i].style.background = '#ccc'
+                    }
+                }else{
+                    onOff = true;
+                    for(var i=0;i<aInp.length;i++){
+                        aInp[i].checked = false;
+                        if(i%2 === 0){
+                            aTr[i].style.background = '#f5f5f5'
+                        }else{
+                            aTr[i].style.background = '#c4e6e0'
+                        }
+                    }
+                }
+            };
+
+            aInp[i].onclick = function(){
+                //单个点击记录选中个数
+                if(aInp[this.index].checked){
+                    num++;
+                }else{
+                    num--;
+                }
+
+                //判断是否全选 分别记录状态
+                if(num === aInp.length && onOff){
+                    onOff = false;
+                    oBtn.checked = true;
+                }else{
+                    onOff = true;
+                    oBtn.checked = false;
+                }
+
+                //根据不同选中状态隔行变色
+                for(var i=0;i<aInp.length;i++){
+                    if(aInp[i].checked){
+                        aTr[i].style.background = '#ccc'
+                    }else{
+                        if(i%2 === 0){
+                            aTr[i].style.background = '#f5f5f5'
+                        }else{
+                            aTr[i].style.background = '#c4e6e0'
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+</script>
+</body>
+</html>

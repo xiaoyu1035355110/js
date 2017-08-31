@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/base.css">
+    <title>Title</title>
+    <style>
+        .container{
+            width:500px;
+            height:auto;
+            min-height: 500px;
+            margin: 200px auto 0;
+        }
+        #tab{
+            width:100%;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+            background: #f1f1f1;
+            border-top-left-radius:5px;
+            border-top-right-radius: 5px;
+        }
+        #tab ul li{
+            width:100px;
+            border:solid 1px #e2e2e2;
+            box-sizing: border-box;
+            height:40px;
+            border-left: none;
+        }
+        #tab ul li:first-child{
+            border-left: solid 1px #e2e2e2;
+            border-top-left-radius: 5px;
+        }
+        #tab ul li.active{
+            border-bottom: none;
+            background: #dadada;
+        }
+        #list{
+            width:100%;
+            height:auto;
+            min-height: 300px;
+        }
+        .cont{
+            border:solid 1px #f5f5f5;
+            border-top:none;
+            display: none;
+            background: #f9f9f9;
+            padding: 8px;
+        }
+        .cont:first-child{
+            display: block;
+        }
+        .cont img{
+            width:250px;
+            height:250px;
+            float: left;
+        }
+        .cont ul{
+            height:250px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+        .cont ul li{
+            float: none;
+            height:40px;
+            line-height: 40px;
+            padding-left: 15px;
+            margin-top: 15px;
+        }
+        .cont ul li.active,
+        .cont ul li:hover{
+            background: #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="tab">
+        <ul>
+            <li class="active">宠物</li>
+            <li>美女</li>
+            <li>美女</li>
+        </ul>
+    </div>
+
+    <div id="list">
+        <div class="cont">
+            <img src="img/7.jpg" alt="1">
+            <ul>
+                <li class="active">戴眼镜的小狗</li>
+                <li>犹豫的小狗</li>
+                <li>穿衣服的小狗</li>
+            </ul>
+        </div>
+        <div class="cont">
+            <img src="img/10.jpg" alt="2">
+            <ul>
+                <li>大眼睛的美少女</li>
+                <li>弹吉他的美少女</li>
+                <li>朴素的美女</li>
+            </ul>
+        </div>
+        <div class="cont">
+            <img src="img/10.jpg" alt="2">
+            <ul>
+                <li>大眼睛的美少女</li>
+                <li>弹吉他的美少女</li>
+                <li>朴素的美女</li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    window.onload = function(){
+        var petUrl = [
+            ['img/7.jpg','img/8.jpg','img/9.jpg'],
+            ['img/10.jpg','img/11.jpg','img/12.jpg'],
+            ['img/1.jpg','img/8.jpg','img/12.jpg']
+        ];
+        var title = document.getElementById('tab');
+        var titleUl = title.getElementsByTagName('ul')[0];
+        var titleLi = titleUl.getElementsByTagName('li');
+
+        var cont = document.getElementById('list');
+        var contDiv = cont.getElementsByTagName('div');
+
+        var timer = null;
+        var num = 0;
+        var choose = 0;
+
+        for(var i=0;i<contDiv.length;i++){
+            contDiv[i].index = i;
+            lifn(contDiv[i],contDiv[i].index);
+        }
+
+        function getDiv(){
+            for(var i=0;i<contDiv.length;i++){
+                contDiv[i].index = i;
+                star(contDiv[i],contDiv[i].index);
+            }
+        }
+
+        function autoPlay(){
+           timer = setInterval(function(){
+                num++;
+                if(num >= petUrl.length){
+                    choose++;
+                }
+
+                choose %= contDiv.length;
+                titlefn(choose);
+
+                num %= 3;
+
+               getDiv();
+
+            },1000);
+        }
+        autoPlay();
+
+        function titlefn(choose){
+            for(var i=0;i<titleLi.length;i++){
+                titleLi[i].className = '';
+                contDiv[i].style.display = 'none';
+            }
+            titleLi[choose].className = 'active';
+            contDiv[choose].style.display = 'block';
+        }
+
+        for(var i=0;i<titleLi.length;i++){
+            titleLi[i].index = i;
+            titleLi[i].onclick = function(){
+                num = 0;
+                getDiv();
+
+                choose = this.index;
+                titlefn(choose);
+
+                clearInterval(timer);
+
+                setTimeout(function(){
+                    autoPlay();
+
+                    getDiv();
+                },1500)
+            }
+        }
+
+
+        function star(div,index){
+            var aLi = div.getElementsByTagName('li');
+            var oImg = div.getElementsByTagName('img')[0];
+
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className = '';
+            }
+            aLi[num].className = 'active';
+            oImg.src = petUrl[index][num];
+
+        };
+
+        function lifn(div,index){
+            var aLi = div.getElementsByTagName('li');
+            var oImg = div.getElementsByTagName('img')[0];
+
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].index = i;
+                aLi[i].onclick = function (){
+
+                    for(var i=0;i<aLi.length;i++){
+                        aLi[i].className = '';
+                    }
+                    this.className = 'active';
+                    oImg.src = petUrl[index][this.index];
+
+                    clearInterval(timer);
+                    num = this.index;
+                    console.log( num);
+                    setTimeout(function(){
+                        console.log(num);
+                        autoPlay();
+
+                    },1500)
+                }
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

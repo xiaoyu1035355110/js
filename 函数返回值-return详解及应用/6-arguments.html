@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    /*
+        //fn1(1,2,3); //实参----实际传递的参数
+        //function fn1(a,b,c){} //形参----形式上,abc这些名代表123
+        function fn1(){
+            //arguments => [1,2,3]---实参的集合
+            alert(arguments);            //[object Arguments]
+            alert(arguments.length);     //3
+            alert(arguments.length - 1); //2
+        }
+        fn1(1,2,3);
+    */
+
+    //当函数的参数的个数无法确定的时候:用arguments
+    function sum(){
+        var n = 0;
+        for(var i=0;i<arguments.length;i++){
+            n += arguments[i];
+        }
+        return n;
+    }
+    alert(sum(1,2,3));
+    alert(sum(1,2,3,4));
+</script>
+</body>
+</html>

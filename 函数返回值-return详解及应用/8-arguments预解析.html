@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    /*
+        //无参数
+        var a = 1;
+        function fn(){
+            alert(a);  //undefined
+            var a = 2;
+        }
+        fn();
+        alert(a);      //1
+    */
+
+    /*
+        //有参数
+        var a = 1;
+        function fn(a){
+            alert(a);  //1
+            var a = 2;
+        }
+        fn(a);
+        alert(a);      //1
+    */
+
+    /*
+        var a = 1;
+        function fn(a){
+            arguments[0] = 3;
+            alert(a);           //3
+            var a = 2;
+            alert(arguments[0]);//2
+        }
+        fn(a);
+        alert(a);               //1
+
+
+         运行机制:
+         1. 预解析找东西
+         34 : a = undefined
+         41 : function fn(a){
+                 arguments[0] = 3;
+                 alert(a);           //3
+                 var a = 2;
+                 alert(arguments[0]);//2
+              }
+         2. 逐级解读代码
+            34 : 表达式 a = 1;
+
+            函数调用(局部作用域):
+                1.预解析找东西
+                    35:function fn(a){} => function fn(var a){} => undefined
+                2.逐级解读代码
+                    35: a = undefined;
+                函数调用:
+                    36: arguments[0] = 3 => var a = 3
+                    37:result: a = 3
+                    38: var a = 2;
+                    39:result: a = 2 => arguments[0] = 2
+                    40:result: a = 2
+            函数执行完毕
+            42: result a = 1;
+
+    */
+
+</script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_379557_yqllmpofxa7l23xr.css" type="text/css">
+    <title>Title</title>
+    <style>
+        .container{
+            width:800px;
+            height:auto;
+            margin: 150px auto;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+        ul{
+            margin:0;
+            padding:0;
+        }
+        ul li{
+            list-style: none;
+        }
+        .nav{
+            width:200px;
+            height:auto;
+            min-height: 320px;
+            float: left;
+        }
+        .nav ul li{
+            height:80px;
+            line-height: 30px;
+            text-align: center;
+            border-top: solid 1px #fff;
+            box-sizing: border-box;
+            padding-top: 10px;
+            cursor: pointer;
+        }
+        .nav ul li:first-child{
+            border-top:none;
+        }
+        .nav ul li span{
+            display: block;
+        }
+        .nav ul li.active{
+            background: rgba(0,0,0,0.2);
+            transition:  all 0.5s;
+            color: #fff;
+        }
+        .nav ul li span:first-child{
+            font-size:25px;
+        }
+        .cont{
+            width:600px;
+            height:auto;
+            min-height: 320px;
+            float: left;
+        }
+        .cont img{
+            position: absolute;
+            left:0;
+            top:0;
+            width:600px;
+            height:320px;
+        }
+        .cont ul{
+            position: relative;
+            width:600px;
+            height:320px;
+            display: none;
+        }
+        .cont ul:first-child{
+            display: block;
+        }
+        .cont ul li{
+            position: absolute;
+            left:0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index:100;
+            color: #fff;
+            text-align: center;
+            height:40px;
+            line-height: 40px;
+            border-right: solid 1px #fff;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .cont ul li.active{
+            background: rgb(245,159,203);
+        }
+        .cont ul li:last-child{
+            border-left: none;
+            border-right: none;
+        }
+        .tb{
+            color: rgb(255,68,0);
+        }
+        .tm{
+            color: rgb(255,0,47);
+        }
+        .mg{
+            color: rgb(255,0,19);
+        }
+        .tn{
+            color: rgb(45,187,85);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav" id="nav">
+        <ul>
+            <li class="active">
+                <span class="iconfont icon-taobao tb"></span>
+                <span>淘宝网</span>
+            </li>
+            <li>
+                <span class="iconfont icon-tianmao tm"></span>
+                <span>天猫购物</span>
+            </li>
+            <li>
+                <span class="iconfont icon-go2mogujie mg"></span>
+                <span>蘑菇街</span>
+            </li>
+            <li>
+                <span class="iconfont icon-tuniu-copy tn"></span>
+                <span>途牛旅游</span>
+            </li>
+        </ul>
+    </div>
+    <div class="cont" id="cont">
+        <ul>
+            <img src="" alt="">
+            <li class="active" data-url="https://img.alicdn.com/tfs/TB10DLESFXXXXb4XFXXXXXXXXXX-520-280.jpg_q90_.webp">装修</li>
+            <li data-url="https://img.alicdn.com/simba/img/TB1RTj6RFXXXXcLXFXXSutbFXXX.jpg">机箱</li>
+            <li data-url="https://img.alicdn.com/simba/img/TB1VAUTSXXXXXcLaFXXSutbFXXX.jpg">去异味</li>
+        </ul>
+        <ul>
+            <img src="" alt="">
+            <li class="active" data-url="http://s3.mogucdn.com/mlcdn/c45406/170809_4kdaf9hi09c7g5f1keb0619811390_778x440.jpg_900x9999.v1c7E.70.webp">女装</li>
+            <li data-url="http://s3.mogucdn.com/mlcdn/c45406/170808_7bcf14b7g5fklf505lj04kibg84k3_778x440.jpg_900x9999.v1c7E.70.webp">9.9包邮</li>
+            <li data-url="http://s10.mogucdn.com/mlcdn/c45406/170808_8dkl91ik8l54e9ha1b6g4g161b53f_778x440.jpg_900x9999.v1c7E.70.webp">美少女</li>
+            <li data-url="http://s10.mogucdn.com/mlcdn/c45406/170808_5jjdhbfe9lgc1h1b16796bh838d69_778x440.jpg_900x9999.v1c7E.70.webp">淑女穿搭</li>
+        </ul>
+        <ul>
+            <img src="" alt="">
+            <li class="active">a</li>
+            <li>b</li>
+            <li>c</li>
+            <li>3</li>
+            <li>3</li>
+        </ul>
+        <ul>
+            <img src="" alt="">
+            <li class="active">!</li>
+            <li>@</li>
+            <li>#</li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function(){
+        var nav = document.getElementById('nav');
+        var navUl = nav.getElementsByTagName('ul')[0];
+        var navLi = navUl.getElementsByTagName('li');
+        var cont = document.getElementById('cont');
+        var contUl = cont.getElementsByTagName('ul');
+        var num = 0;
+
+        for(var i=0;i<navLi.length;i++){
+            navLi[i].index = i;
+            tab(navLi[i]);
+        }
+        function tab(aLi){
+            aLi.onclick = function(){
+                for(var i=0;i<navLi.length;i++){
+                    navLi[i].className = '';
+                }
+                this.className = 'active';
+
+                showCont(this.index);
+            };
+            showCont(num);
+        }
+
+        function showCont(index){
+            for(var i=0;i<contUl.length;i++){
+                contUl[i].style.display = 'none'
+            }
+            contUl[index].style.display = 'block';
+
+            var aLi = contUl[index].getElementsByTagName('li');
+            var oImg = contUl[index].getElementsByTagName('img')[0];
+
+            oImg.src = aLi[num].dataset.url;
+
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].style.width = contUl[index].clientWidth / aLi.length + 'px';
+                aLi[i].style.left = (aLi[i].clientWidth+1) * i + 'px';
+                aLi[aLi.length - 1].style.left = aLi[aLi.length - 1].clientWidth * (aLi.length - 1) + 'px';
+                showImg(aLi[i]);
+            }
+
+            function showImg(li){
+                li.onmouseover = function(){
+                    for(var i=0;i<aLi.length;i++){
+                        aLi[i].index = i;
+                        aLi[i].className = '';
+                    }
+                    this.className = 'active';
+                    oImg.src = aLi[this.index].dataset.url;
+                    console.log(aLi[this.index].dataset.url)
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

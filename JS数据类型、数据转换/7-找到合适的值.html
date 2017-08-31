@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+window.onload = function(){
+    var arr = ['100px','abc'-6,[],-98765,34,-2,0,'300',,function(){alert(1);},null,document,[],true,'200px'-30,'23.45元',5,Number('abc'),function(){alert(3);},1000];
+
+    /*//找出所有字符串
+    function fn(){
+        for(var i=0;i<arr.length;i++){
+            if((typeof arr[i]) ==='string'){
+                alert(arr[i]);
+            }
+        }
+    }
+    fn();*/
+
+    /*//找到arr的所有数字:-98765,34,-2,0,5
+    function fn1(){
+        for(var i=0;i<arr.length;i++){
+//            console.log(arr[i]);
+            if(typeof arr[i] === 'number'){
+                if(isNaN(arr[i])){
+                    console.log(arr[i] + '不需要');
+                }else{
+                    console.log(arr[i] + '需要');
+                }
+            }
+        }
+    }
+    fn1();*/
+
+    /*//找到可以转成数字的:'100px',-98765,34,-2,0,'300',5
+
+    function f2(){
+       for(var i=0;i<arr.length;i++){
+         if(typeof(arr[i])==='number' && arr[i]===arr[i]){
+            document.write(arr[i]);
+         };
+       };
+    }
+
+    function fn2(){
+        for(var i=0;i<arr.length;i++){
+            if(parseInt(arr[i]) == parseFloat(arr[i])){
+                console.log(parseInt(arr[i]));
+            }
+        }
+    }
+    fn2();*/
+
+    //把转成数字以后,最大的值判断出来:300
+    /*function fn3(){
+        var bigN=Number.NEGATIVE_INFINITY;
+        for(var i=0;i<arr.length;i++){
+            if(parseInt(arr[i]) == parseFloat(arr[i])){
+                if(bigN<parseInt(arr[i])){
+                    bigN=parseInt(arr[i]);
+                };
+            }
+        }
+        console.log(bigN);
+    }
+    fn3();*/
+
+    /*//把NaN所在的位置找出来
+    function fn4(){
+        for(var i=0;i<arr.length;i++){
+            if(typeof arr[i] === 'number' && isNaN(arr[i])){
+                console.log(i);
+            }
+        }
+    }
+    fn2();*/
+}
+</script>
+</body>
+</html>

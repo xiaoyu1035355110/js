@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html lang>
+<head>
+    <meta charset="utf-8">
+    <title>miaov 2_1_8_3</title>
+    <style>
+        ul, li{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        li, img{
+            cursor: pointer;
+        }
+        body{
+            background: #E8DFDF;
+        }
+        div, li, img{
+            border-radius: 10px;
+        }
+        div{
+            width: 470px;
+            height: 306px;
+            margin: 0 auto;
+            border: 2px solid #AAAAAA;
+            box-shadow: 0 0 30px;
+        }
+        li{
+            width: 80px;
+            height: 40px;
+            border: 1px solid #BB51FA;
+            margin-bottom: 2px;
+            background: #C978F9;
+            line-height: 40px;
+            text-align: center;
+        }
+        ul, img{
+            float: left;
+        }
+        img{
+            width:300px;
+        }
+        li:hover{
+            background: #E7CCF7;
+        }
+    </style>
+</head>
+<body>
+<div id="oDiv">
+    <ul>
+        <li>图片一</li>
+        <li>图片二</li>
+        <li>图片三</li>
+        <li>图片四</li>
+        <li>图片五</li>
+        <li>图片六</li>
+        <li>图片七</li>
+    </ul>
+    <img id="img" src="img/1.png" title="">
+    <ul>
+        <li>图片八</li>
+        <li>图片九</li>
+        <li>图片十</li>
+        <li>图片十一</li>
+        <li>图片十二</li>
+        <li>图片十三</li>
+        <li>图片十四</li>
+    </ul>
+</div>
+<script>
+    function $( v ){
+        if( typeof v === 'function' ){
+            window.onload = v;
+        } else if ( typeof v === 'string' ) {
+            return document.getElementById(v);
+        } else if ( typeof v === 'object' ) {
+            return v;
+        }
+    }
+
+    function getStyle( obj, attr ){
+        return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle( obj )[attr];
+    }
+
+    $(function(){
+        var aLi = document.getElementsByTagName('li');
+        var arrPic = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg','img/7.jpg','img/8.jpg','img/9.jpg','img/10.jpg','img/11.jpg','img/12.jpg','img/3.jpg','img/4.jpg'];
+        var order = 0;
+        var reverse = 0;
+        var timer = null;
+
+        //初始化
+        aLi[0].style.background = '#E7CCF7';
+
+        //sLide滑过模块
+        for ( var i=0; i<arrPic.length; i++ ){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function (){
+                order = this.index;
+                reverse = this.index;
+                $('img').src = arrPic[this.index]
+                for ( var i=0; i<arrPic.length; i++ ){
+                    aLi[i].style.background = i != this.index ? '' : '#E7CCF7';
+                }
+            }
+        }
+
+        //定时器模块
+        function merge(value){
+            $('img').src = arrPic[value%aLi.length];
+            for ( var i=0; i<aLi.length; i++ ){
+                aLi[i].style.background = i != value%aLi.length ? '' : '#E7CCF7';
+            }
+        }
+
+        function autoPlay () {
+            clearInterval ( timer )
+            timer = setInterval (function(){
+                if ( order >= 0 && order < aLi.length-1 ) {
+                    order ++;
+                    merge(order);
+                    reverse = order;
+                } else{
+                    reverse --;
+                    merge(reverse);
+                    order = reverse == 0 ? reverse : order;
+                }
+            }, 500 );
+        }
+        autoPlay ();
+
+        $('oDiv').onmouseover = function (){
+            clearTimeout( timer );
+        }
+        $('oDiv').onmouseout = autoPlay;
+    });
+</script>
+</body>
+</html>

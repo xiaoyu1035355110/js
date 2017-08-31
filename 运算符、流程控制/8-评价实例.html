@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .star *{
+            display: inline-block;
+            width:auto;
+            overflow: hidden;
+            height:40px;
+            line-height: 40px;
+        }
+        .star img{
+            height:26px;
+            width:26px;
+            padding-top: 7px;
+        }
+        .star img:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="star">
+    <span>请做出本次评价: </span>
+    <ul id="starList">
+        <li><img src="img/1.jpg" alt="非常差"></li>
+        <li><img src="img/1.jpg" alt="很差"></li>
+        <li><img src="img/1.jpg" alt="一般"></li>
+        <li><img src="img/1.jpg" alt="满意"></li>
+        <li><img src="img/1.jpg" alt="非常好"></li>
+    </ul>
+    <span class="prompt"></span>
+</div>
+
+<script type="text/javascript">
+    window.onload = function (){
+        var oUl = document.getElementById('starList');
+        var aImg = oUl.getElementsByTagName('img');
+        var prompt = document.getElementsByTagName('span')[1];
+        var onOff = false;
+        var num = null;
+
+        for(var i=0;i<aImg.length;i++){
+            aImg[i].index = i;
+
+            aImg[i].onclick = function () {
+                //记录当前星星位置
+                num = this.index;
+                onOff = true;
+
+            };
+            aImg[i].onmouseover = star;
+            aImg[i].onmouseout = function(){
+                //判断当前星星是否为选中状态
+                if(onOff){
+                    for(var i=0;i<aImg.length;i++){
+                        aImg[i].src = 'img/1.jpg';
+                    }
+
+                    for(var i=0;i<=num;i++){
+                        if(num === 2 || num > 2){
+                            for(var k=0;k<=num;k++){
+                                aImg[k].src = 'img/3.jpg';
+                            }
+                        }else{
+                            for(var j=0;j<=num;j++){
+                                aImg[j].src = 'img/2.jpg';
+                            }
+                        }
+
+                        prompt.innerHTML = aImg[num].alt;
+                    }
+                }else{
+                    for(var i=0;i<=this.index;i++){
+                        aImg[i].src = 'img/1.jpg';
+                    }
+                    prompt.innerHTML = '';
+                }
+            };
+
+            function star(){
+                //默认所有的为白色星星
+                for(var i=0;i<aImg.length;i++){
+                    aImg[i].src = 'img/1.jpg';
+                }
+
+                //对当前指定的星星进行循环
+                for(var i=0;i<=this.index;i++){
+
+                    //如果超过3颗星星加载黄色星星否则为灰色
+                    if(this.index === 2 || this.index > 2){
+                        for(var k=0;k<=this.index;k++){
+                            aImg[k].src = 'img/3.jpg';
+                        }
+                    }else{
+                        for(var j=0;j<=this.index;j++){
+                            aImg[j].src = 'img/2.jpg';
+                        }
+                    }
+
+                    //设置当前文字
+                    prompt.innerHTML = this.alt;
+                }
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

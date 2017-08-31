@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            background: #000;
+        }
+        ul{
+            list-style: none;
+            padding:0;
+            margin:0;
+        }
+        ul li{
+            width:70px;
+            height:35px;
+            line-height: 35px;
+            border:solid 1px pink;
+            border-radius: 5px;
+            text-align: center;
+            margin: 0 auto 3px;
+            color: #fff;
+        }
+        .container{
+            width:500px;
+            height:280px;
+            overflow: hidden;
+            margin: 150px auto 0;
+        }
+        .container > div,.container > img{
+            float: left;
+        }
+        .container > div{
+            width:100px;
+        }
+        .container > img{
+            width:300px;
+            height:280px;
+        }
+        ul li:hover,ul li.active{
+            background: pink;
+            color: white;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="leftNav">
+        <ul>
+            <li>连衣裙</li>
+            <li>连衣裙</li>
+            <li>连衣裙</li>
+            <li>连衣裙</li>
+            <li>连衣裙</li>
+            <li>连衣裙</li>
+            <li>连衣裙</li>
+        </ul>
+    </div>
+    <img src="img/1.jpg" alt="">
+    <div id="rightNav">
+        <ul>
+            <li>太阳镜</li>
+            <li>太阳镜</li>
+            <li>太阳镜</li>
+            <li>太阳镜</li>
+            <li>太阳镜</li>
+            <li>太阳镜</li>
+            <li>太阳镜</li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function (){
+        var oImg = document.getElementsByTagName('img')[0];
+        var aLi = document.getElementsByTagName('li');
+        var timer = null;
+        var num = 0;
+        var arrUrl = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg','img/7.jpg','img/8.jpg','img/9.jpg','img/10.jpg','img/11.jpg','img/12.jpg','img/13.jpg','img/14.jpg'];
+        function down(num){
+            timer = setInterval(function(){
+                if(num < aLi.length - 1){
+                    num ++;
+
+                    if(num === aLi.length - 1){
+                        up(num);
+                    }
+
+                    for(var i=0;i<aLi.length;i++){
+                        aLi[i].className = '';
+                    }
+                    aLi[num].className = 'active';
+                    oImg.src = arrUrl[num];
+                }
+            },500);
+        }
+        aLi[0].className = 'active';
+        setTimeout(function(){
+
+            down(num);
+        },1000);
+
+
+        function up(num){
+            clearInterval(timer);
+
+            timer = setInterval(function(){
+
+                if(num <= aLi.length - 1){
+                    num--;
+                    for(var i=0;i<aLi.length;i++){
+                        aLi[i].className = '';
+                    }
+                    aLi[num].className = 'active';
+                    oImg.src = arrUrl[num];
+                }
+                if(num === 0){
+                    num = 0;
+                    clearInterval(timer);
+                    down(num);
+
+                }
+            },500)
+        }
+
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function(){
+                clearInterval(timer);
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].className = '';
+                }
+                aLi[this.index].className = 'active';
+                oImg.src = arrUrl[this.index];
+            };
+
+            aLi[i].onmouseout = function(){
+                tab(this.index)
+            }
+        }
+
+        function tab(num){
+            num <= (aLi.length +1) / 2 ? down(num): up(num);
+
+        }
+    }
+</script>
+</body>
+</html>

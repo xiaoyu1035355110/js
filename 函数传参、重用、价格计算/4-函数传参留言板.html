@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_ir7og4lraajug14i.css">
+    <style>
+        body{
+            background: #f2f2f2;
+        }
+        .container{
+            width:800px;
+            height:auto;
+            min-height: 100px;
+            margin:150px auto;
+            overflow: hidden;
+            border:solid 2px rgba(202,200,202,0.7);
+            box-sizing: border-box;
+            border-top: none;
+        }
+        .container .row{
+            width:100%;
+        }
+        .title{
+            height:40px;
+            line-height: 40px;
+            border-top:solid 1px #333B2B;
+            padding-left: 40px;
+            font-size:18px;
+            color: #fff;
+            font-weight: bolder;
+            background: #5F983A;
+        }
+        .list ul{
+            margin:0;
+            padding:0;
+        }
+        .list ul li{
+            list-style: none;
+            height:60px;
+            line-height: 60px;
+            border-bottom: solid 1px #D6E5E6;
+            padding-left: 40px;
+        }
+        .list ul li span:first-child:hover{
+            border-bottom: solid 1px lightgreen;
+        }
+        .list ul li span:first-child{
+            cursor: pointer;
+        }
+        .list ul li span:last-child{
+            font-size:16px;
+            color: #37ABF0;
+            display: inline-block;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+        .list ul li input{
+            height:35px;
+            line-height: 35px;
+            padding-left: 5px;
+            margin-right: 20px;
+        }
+        .list ul li a{
+            display: inline-block;
+            width:auto;
+            padding: 0 20px;
+            color: limegreen;
+            text-decoration: none;
+            height:25px;
+            line-height: 25px;
+        }
+        .list ul li a:hover{
+            background: limegreen;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row title">
+        分类名称
+    </div>
+    <div class="row list">
+        <ul>
+            <li>
+                <span>妙味实体课程1</span>
+                <span class="iconfont icon-bianji"></span>
+            </li>
+            <li>
+                <span>妙味实体课程2</span>
+                <span class="iconfont icon-bianji"></span>
+            </li>
+            <li>
+                <span>妙味实体课程3</span>
+                <span class="iconfont icon-bianji"></span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function (){
+        var oUl = document.getElementsByTagName('ul')[0];
+        var aLi = oUl.getElementsByTagName('li');
+        var arr = [];
+
+        for(var i=0;i<aLi.length;i++){
+            arr[i] = i;
+            modif(aLi[i]);
+        }
+
+        function modif(aLi){
+            var name = aLi.getElementsByTagName('span')[0];
+            var edit = aLi.getElementsByTagName('span')[1];
+            name .ondblclick = public;
+            edit.onclick = public;
+
+            function public(){
+                aLi.innerHTML = '<input type="text" value="'+name.innerHTML+'">'
+                    +'<a href="javascript:;">保存</a>'
+                    +'<a href="javascript:;">取消</a>';
+
+                var aA1 = aLi.getElementsByTagName('a')[0];
+                var aA2 = aLi.getElementsByTagName('a')[1];
+
+
+                aA1.onclick = save;
+                aA2.onclick = cancel;
+            }
+
+            function save(){
+                var oInput = aLi.getElementsByTagName('input')[0];
+                aLi.innerHTML = '<span>'+oInput.value+'</span> '
+                               +'<span class="iconfont icon-bianji"></span>';
+                modif(aLi);
+            }
+
+            function cancel(){
+                var names = name.innerHTML;
+                aLi.innerHTML = '<span>'+names+'</span> '
+                               +'<span class="iconfont icon-bianji"></span>';
+                modif(aLi);
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    /*
+        作用域:
+        域: 空间、范围、区域……
+        作用:读、写
+
+        浏览器:
+          "js解析器"
+            1)"找一些东西":
+            a = 未定义
+             所有的变量在正式运行代码之前,都提前赋了一个值:未定义
+            fn1 = function fn1(){alert(1)}
+             所有的函数,在正式运行代码之前,都是整个函数块
+
+            js预解析
+             遇到重名的:只留一个
+             变量和函数重名了,就只留函数
+
+            2)逐级解读代码:
+             表达式: = + - * / % ++ -- ! (参数) ....
+             表达式可以修改预解析的值!
+
+         alert(a);
+         var a = 1;
+         function fn1() {
+            alert(1);
+         }
+     */
+
+
+    /*
+
+         alert(a);
+         var a = 1;
+         alert(a);
+         function a(){ alert(2) };
+         alert(a);
+         var a = 3;
+         alert(a);
+         function a(){ alert(4) };
+         alert(a);
+         a();
+
+        js解析分析:
+          预解析:遇到重名的:只留一个,变量和函数重名了,就只留函数
+
+          1)"找一些东西":
+          //43: a = undefined
+          //45: a = function a(){ alert(2) };
+          //47: a = function a(){ alert(2) };
+          //49: a = function a(){ alert(4) };
+
+          表达式可以修改预解析的值!
+
+          2)逐级解读代码:
+          预解析后进行逐级解读代码
+          //42: result : function a(){ alert(4) };
+          //43: a = 1 //表达式赋值
+          //44: result : 1
+          //45: 函数不是表达式不能赋值 a的值未改变
+          //46: result : 1
+          //47: a = 3 //表达式赋值
+          //48: result : 3
+          //49: 函数不是表达式不能赋值 a的值未改变
+          //50: result : 3
+          //51 a(); a = 3;而不是一个方法 result : a is a not function
+     */
+
+
+    /*
+          三种作用域:
+            1.script 全局变量、全局函数(自上而下);
+            2.函数(由里到外)
+            3.{}
+
+
+            script全局作用域:
+
+            1)
+            <script>
+                通过预解析 找到 a = undefined;
+                alert(a);
+                var a = 1;
+            <\/script>
+
+            2)
+            js按块解读
+            A解读完成后 在对B进行解读
+            A:<script>
+                预解析未找到a报错 : a is not a define
+                alert(a);
+            <\/script>
+            B:<script>
+                预解析找到 a = undefined;
+                var a = 1;
+                通过表达式赋值 a = 1
+            <\/script>
+
+            3)
+            js按块解读
+            A解读完成后 在对B进行解读
+            A:<script>
+                预解析找到 a = undefined;
+                var a = 1;
+                通过表达式赋值 a = 1
+            <\/script>
+            B:<script>
+                预解析仓库存储 a = 1
+                alert(a); //1
+            <\/script>
+
+
+
+            function局部作用域
+
+            var a = 1;
+            function f1(){
+                alert(a);
+                var a = 2;
+            }
+            f1();
+            alert(a);
+
+            运行机制:
+            1. 预解析找东西
+               125 : a = undefined
+               126 : fn1 = function f1(){ alert(a); var a = 2; };
+            2. 逐级解读代码
+                125 : 表达式 a = 1;
+                函数调用(局部作用域):
+                    1.预解析找东西
+                        127 : a = undefined
+                    2.逐级解读代码
+                        127 : undefined
+                        128 : 表达式 a = 2;
+                函数调用:
+                    127: result = undefined
+                函数执行完毕
+                131: result a = 1;
+
+
+
+
+           function全局作用域
+
+           var a = 1;
+           function fn1(){
+               alert(a);
+               a = 2;
+           }
+           fn1();
+           alert(a);
+
+           运行机制:
+             1. 预解析找东西
+                155 : a = undefined
+                156 : fn1 = function f1(){ alert(a); var a = 2; };
+             2. 逐级解读代码
+                155 : 表达式 a = 1;
+
+                函数调用(局部作用域):
+                 1.预解析找东西
+                    局部内未找到,就会由内跳到外部去找
+                    155 a = 1
+                 2.逐级解读代码
+                    局部内未找到,就会由内跳到外部去找
+                    157 : a = 1
+                    158 : 表达式 a = 2;
+                 函数调用:
+                    157: result = 1
+                 函数执行完毕
+                    161: result a = 2;
+
+
+
+
+            function 有参数无传参作用域
+            var a = 1;
+            function fn1(a){
+                alert(a);
+                a = 2;
+            }
+            fn1();
+            alert(a);
+
+            运行机制:
+                1.预解析找东西
+                    187 : a = undefined
+                    188 : function fn1(a){ alert(a); a = 2 };
+                2.逐级解读代码:
+                    187 : 表达式 a = 1
+
+                    192 : 函数调用(局部作用域由里到外):
+                        1.预解析找东西 var  function 参数
+                            function fn1(var a){
+                                alert(a);
+                                a = 2;
+                            }
+                            函数中的参数 a = var a;
+                            188 : 参数中的a = undefined
+                        2.逐级解读代码
+                            189: result : undefined
+                            190: 表达式 a = 2;  a为function的参数 a
+                    函数调用:
+                    192: result = undefined
+                    函数执行完毕
+                    193: result a = 1;
+
+
+
+             function 有参数有传参作用域
+
+             var a = 1;
+             function fn1(a){
+             alert(a);
+             a = 2;
+             }
+             fn1(a);
+             alert(a);
+
+             运行机制:
+                 1.预解析找东西
+                    222 : a = undefined
+                    223 : function fn1(a){ alert(a); a = 2 };
+                 2.逐级解读代码:
+                    222 : 表达式 a = 1
+
+                 227 : 函数调用(局部作用域由里到外):
+                    1.预解析找东西 var  function 参数
+                        fn1(a);  此时的a为全局的a
+
+                        function fn1(var a = 1){
+                            alert(a); //1
+                            a = 2;
+                        }
+                        函数中的参数 a : var a = 1;
+                        242 : 参数中的a = 1
+                        243 a = 2 此时改变的是  function fn1(a = 2)
+                    2.逐级解读代码
+                         224: result : 1
+                         225: 表达式 a = 2;  a为function的参数 a = 2
+                         函数调用:
+                         227: result = 1
+                         函数执行完毕
+                         228: result a = 1; 全局的a
+     */
+</script>
+</body>
+</html>

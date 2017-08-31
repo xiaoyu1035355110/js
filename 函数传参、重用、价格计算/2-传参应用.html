@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    function fn(t){
+        if(typeof t === 'number' && t === t){
+            alert(t + 20);//120
+        }else if(typeof t === 'string'){
+            alert(t.charAt(2));//a
+        }else{
+            t();//1
+        }
+    }
+    fn(100);
+    fn('miaov');
+    fn(function(){alert(1)});
+</script>
+</body>
+</html>

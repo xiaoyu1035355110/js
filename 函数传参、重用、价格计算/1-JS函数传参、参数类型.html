@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    /*
+        函数传递参数
+            参数 = js的数据类型
+            数字、字符串、布尔、函数、对象、未定义
+     */
+
+    /*//传递数字
+    function fn(a){
+        alert(a);//100
+    }
+    fn(100);*/
+
+    /*//传递字符串
+    function fn1(a, b){
+        alert(a + b);//100px
+    }
+    fn1(100,'px');*/
+
+    //传递函数(匿名函数无参数)
+    /*function fn2(fn){
+        fn();//1
+    }
+    fn2(function(){
+        alert(1)
+    });*/
+
+    /*//传递函数(匿名函数有参数)
+    function fn2(fn1){
+        fn1(10);
+    }
+    fn2(function(fn){alert(fn)})*/
+
+   /* //传递命名函数
+    function fn2(fn){
+        fn();
+    }
+    function fn2s(){
+        alert(1)
+    }
+    fn2(fn2s);*/
+
+    /*
+        //传递对象
+        function fn3(w, d){
+            w.onload = function(){
+                d.body.innerHTML = 123;
+            }
+        }
+        fn3(window,document);
+    */
+
+    /*
+        //function 3214 面试题
+
+        console.log(a);
+        a(3);
+        var a = 1;
+        console.log(a);
+        b();
+        console.log(a);
+        function a(a){
+            console.log(a);
+            var a = 2;
+            console.log(a);
+        }
+        function b(){
+            a = 4;
+        }
+    */
+</script>
+</body>
+</html>

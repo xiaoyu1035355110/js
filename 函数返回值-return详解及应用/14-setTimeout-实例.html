@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #qq{
+            width:200px;
+            height:400px;
+            background: #f9c;
+        }
+        #title{
+            width:240px;
+            height:180px;
+            background: #fc6;
+            position: absolute;
+            left:220px;
+            top:10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="qq"></div>
+<div id="title"></div>
+<script src="js/xjy.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var qq = $('qq');
+        var title = $('title');
+        var timer = null;
+
+        qq.onmouseover = show;
+        qq.onmouseout = hide;
+
+        title.onmouseover = show;
+        title.onmouseout = hide;
+
+        function show(){
+            clearTimeout(timer);
+            title.style.display = 'block'
+        }
+        function hide(){
+           timer = setTimeout(function(){
+                title.style.display = 'none'
+            },200)
+
+        }
+    })
+</script>
+</body>
+</html>

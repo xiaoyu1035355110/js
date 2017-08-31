@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    /*
+        全局作用域
+
+     var num = 0;
+     function fn1(){
+        num++;
+     }
+     function fn2(){
+        num--;
+     }
+     fn2();
+     fn1();
+     fn2();
+     alert(num); //-1
+
+     ps:函数内未申明,会像外层寻找最近的变量
+     */
+
+    /*
+        获取函数内的值
+
+        1.通过全局变量获取
+            var str = '';
+            function fn1(){
+                var a = '你好啊!';
+                str = a;
+            }
+            fn1();
+            alert(str);
+
+            函数外部不能直接访问内部的变量
+            利用函数作用域,可以找到全局的变量进行赋值再去访问
+
+        2.通过全局函数获取
+            function fn1(){
+                var a = '我是fn1';
+                fn2(a);
+            }
+            function fn2(a){
+                alert(a);
+            }
+            fn1();
+
+            运行机制:
+                1.找东西
+                    fn1 : function fn1(){ var a = '我是fn1'; fn2(a) };
+                    fn2 : function fn2(a){ alert(a) };
+                2.解读代码
+                    52: 函数调用 fn1()
+                    通过预解析找到相对的 fn1方法
+                        1.找东西
+                            46: a = undefined;
+                        2.解读代码
+                            46: 表达式赋值
+                            47: 函数调用传入参数  fn2(a = '我是fn1');
+                            通过预解析找到相对的fn2方法 传入参数 a = '我是fn1'
+                                1.找东西
+                                    fn2未找到任何东西
+                                2.解读代码
+                                    49: function fn2(a = '我是fn1') 接受fn1参数
+                                    50: result : '我是fn1'
+
+    */
+</script>
+</body>
+</html>

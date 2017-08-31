@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="list">
+    <li>
+        <input type="button" value="-">
+        <strong>0</strong>
+        <input type="button" value="+">
+        单价: <em>12.5元</em>
+        小计: <span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-">
+        <strong>0</strong>
+        <input type="button" value="+">
+        单价: <em>12元</em>
+        小计: <span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-">
+        <strong>0</strong>
+        <input type="button" value="+">
+        单价: <em>8.5元</em>
+        小计: <span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-">
+        <strong>0</strong>
+        <input type="button" value="+">
+        单价: <em>2.5元</em>
+        小计: <span>0元</span>
+    </li>
+</ul>
+<p>
+    商品总数:<span id="totalCount">0</span>个,商品总金额:<span id="totalAmount">0</span>元<br>
+    商品最高单价:<span id="maxPrice">0</span>元
+</p>
+
+<script type="text/javascript">
+    window.onload = function(){
+        var oUl = document.getElementById('list');
+        var aLi = oUl.getElementsByTagName('li');
+        var totalAmountHtml = document.getElementById('totalAmount');
+        var totalCountHtml = document.getElementById('totalCount');
+        var maxPriceHtml = document.getElementById('maxPrice');
+        var totalCount = 0;
+        var totalAmount = 0;
+        var arr = [];
+
+        for(var i=0;i<aLi.length;i++){
+            arr[i] = 0;
+            compute(aLi[i]);
+        }
+
+        function compute(aLi){
+            var oBtn = aLi.getElementsByTagName('input');
+            var oStrong = aLi.getElementsByTagName('strong')[0];
+            var oSpan = aLi.getElementsByTagName('span')[0];
+            var oEm = aLi.getElementsByTagName('em')[0];
+            var count = Number(oStrong.innerHTML); //0
+            var price = parseFloat(oEm.innerHTML); //12.5
+
+            oBtn[0].onclick = function(){
+                if(count < 1){
+                    count = 0;
+                }else{
+                    count--;
+                    totalCount--;
+                    totalAmount = totalAmount - price;
+                }
+                oStrong.innerHTML = count;
+                oSpan.innerHTML = count * price + '元';
+                totalAmountHtml.innerHTML = totalAmount.toFixed(2);
+                totalCountHtml.innerHTML = totalCount;
+
+                counts();
+            };
+
+            oBtn[1].onclick = function(){
+                count++;
+                totalCount ++;
+                totalAmount = totalAmount + price;
+                oStrong.innerHTML = count;
+                oSpan.innerHTML = count * price + '元';
+                totalAmountHtml.innerHTML = totalAmount.toFixed(2);
+                totalCountHtml.innerHTML = totalCount;
+
+                counts();
+            };
+        }
+
+        function counts(){
+            //获取所有单价
+            for(var i=0;i<aLi.length;i++){
+                var aStrong =  parseInt(aLi[i].getElementsByTagName('Strong')[0].innerHTML);
+                var aEm = parseFloat(aLi[i].getElementsByTagName('em')[0].innerHTML);
+                if(aStrong > 0){
+                    arr[i] = aEm;
+                }else{
+                    arr[i] = 0;
+                }
+            }
+
+            //获取最高单价并赋值
+            var maxUnitPrice = arr[0];
+            for(var i=0;i<arr.length;i++){
+                if(maxUnitPrice < arr[i]){
+                    maxUnitPrice = arr[i];
+                }
+            }
+            maxPriceHtml.innerHTML = maxUnitPrice;
+        }
+    }
+</script>
+</body>
+</html>

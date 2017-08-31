@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width:100px;
+            height:100px;
+            background: pink;
+            position: absolute;
+            top:50px;
+            left:30px;
+        }
+    </style>
+</head>
+<body>
+
+<input type="button" value="向后" />
+<input type="button" value="向前" />
+<div id="div1"></div>
+<script type="text/javascript">
+
+    var oBtn = document.getElementsByTagName('input');
+    var oDiv = document.getElementById('div1');
+
+    oBtn[0].onclick = function(){
+
+        clearInterval(oDiv.timer);
+
+        oDiv.timer = setInterval(function(){
+            //速度
+            var speed = parseInt(getStyle(oDiv,'left')) - 19;
+
+            if (speed < 10){
+                speed = 10;
+            }
+
+            oDiv.style.left = speed + 'px';
+
+            if( speed === 10){
+                clearInterval(oDiv.timer)
+            }
+        },30);
+
+
+    };
+
+    oBtn[1].onclick = function(){
+
+        clearInterval(oDiv.timer);
+
+        oDiv.timer = setInterval(function(){
+            //速度
+            var speed = parseInt(getStyle(oDiv,'left')) + 19;
+
+            if (speed > 800){
+                speed = 800;
+            }
+
+            oDiv.style.left = speed + 'px';
+
+            if( speed === 800){
+                clearInterval(oDiv.timer)
+            }
+        },30);
+
+
+    };
+
+    function getStyle(obj,attr){
+        return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+    }
+</script>
+</body>
+</html>

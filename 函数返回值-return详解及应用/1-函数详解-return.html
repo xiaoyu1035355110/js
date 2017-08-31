@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    //return 返回值
+    //数字、字符串、布尔、函数、对象(元素\[]\{})、未定义
+
+
+    /*
+        //数字
+        function fn1() {
+            return 100;
+        }
+        alert(fn1());
+        //fn1() => 100
+    */
+    
+    /*
+        //字符串
+        function fn2() {
+            return 'miaov';
+        }
+        alert(fn2().length); //5
+        alert(typeof fn2()); //string
+    */
+
+    /*
+        //函数
+        function fn3(){
+            return function(){
+                alert(1)
+            }
+        }
+        fn3()();//1
+        //fn3() => 函数名称
+        //()    => 匿名函数
+        //fn3()() => function fn3(){}()
+
+
+        function fn3(a){
+            return function (b) {
+                alert(a+b);
+            }
+        }
+        fn3(10)(20); //30
+        //函数内部因为预解析,内部没找到会向外查找
+
+
+        //window对象
+        function fn4() {
+            return window;
+        }
+        fn4().onload = function(){
+            document.body.innerHTML = '123'
+        }
+        fn4().onload => window.onload
+
+
+        //默认函数return undefined
+        function fn6(){
+            return; //undefined
+        }
+        alert(fn6());//undefined
+
+
+        //return 后面不执行
+        function fn5(){
+            return 123;
+
+            alert(123);
+        }
+        //return:返回值
+        //1):函数名+括号:fn1() = > return 后面的值
+        //2):所有函数默认返回:未定义
+        //3):return后面任何代码都不执行了
+
+     */
+
+</script>
+</body>
+</html>

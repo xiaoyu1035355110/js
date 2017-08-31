@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul li{
+            list-style: none;
+            height:24px;
+            margin-bottom: 3px;
+            border-radius: 100%;
+            cursor: pointer;
+            width:24px;
+            float: left;
+            transition: all 0.1s;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<script type="text/javascript">
+    /*
+        i = 5;
+        0 % 1 = 0
+        1 % 5 = 1
+        2 % 5 = 2
+        3 % 5 = 3
+        4 % 5 = 4
+        5 % 5 = 0
+     */
+    window.onload = function (){
+        var aLi = document.getElementsByTagName('li');
+        var arrColor = ['red','yellow','blue','green'];
+
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index = i;
+
+            aLi[i].style.background = arrColor[i%arrColor.length];
+
+            aLi[i].onmouseover = function(){
+                this.style.background = 'gray';
+            };
+
+            aLi[i].onmouseout = function (){
+                this.style.background = arrColor[this.index%arrColor.length];
+            };
+        }
+    };
+</script>
+</body>
+</html>

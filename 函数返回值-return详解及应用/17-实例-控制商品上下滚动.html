@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_379557_g29l3xm1hya2a9k9.css">
+    <title>Title</title>
+    <style>
+        ul{
+            margin:0;
+            padding:0;
+        }
+        ul li{
+            list-style: none;
+        }
+        .container{
+            margin:150px auto 0;
+            width:300px;
+            height:600px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        img{
+            width:100%;
+        }
+        .title{
+            background: pink;
+            height:40px;
+            line-height: 40px;
+            color: #fff;
+        }
+        .title div{
+            width:50%;
+            float: left;
+            box-sizing: border-box;
+        }
+        .title .left{
+            padding-left: 10px;
+        }
+        .title .right{
+            text-align: right;
+            padding-right: 10px;
+        }
+        .cont a{
+            display: inline-block;
+            width:100%;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+            background: #e2e2e2;
+            color: #000;
+            text-decoration: none;
+        }
+        .cont ul{
+            height:auto;
+        }
+        .cont .list{
+            height:480px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="title">
+        <div class="left">
+            商品上下滚动
+        </div>
+        <div class="right">
+            >>更多
+        </div>
+    </div>
+    <div class="cont">
+        <a href="javascript:;">
+            <span class="iconfont icon-xiangshang"></span>
+        </a>
+        <div class="list" id="list">
+            <ul>
+                <li><img src="img/1.jpg" alt=""></li>
+                <li><img src="img/2.jpg" alt=""></li>
+                <li><img src="img/3.jpg" alt=""></li>
+                <li><img src="img/4.jpg" alt=""></li>
+                <li><img src="img/5.jpg" alt=""></li>
+            </ul>
+        </div>
+        <a href="javascript:;">
+            <span class="iconfont icon-xiangxia"></span>
+        </a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function(){
+        var oBtn = document.getElementsByTagName('a');
+        var oUl = document.getElementsByTagName('ul')[0];
+        var oDiv = document.getElementById('list');
+        var num = 0;
+        var timer = null;
+
+        oBtn[0].onmousedown = function(){
+
+            clearInterval(timer);
+
+            timer = setInterval(function(){
+
+                if(num < oUl.clientHeight - oDiv.clientHeight){
+                    num ++;
+                    oUl.style.marginTop = -num + 'px';
+                }
+            },5);
+        };
+        oBtn[0].onmouseup = function(){
+            clearInterval(timer);
+        };
+
+
+
+        oBtn[1].onmousedown = function(){
+            clearInterval(timer);
+
+            timer = setInterval(function(){
+                num --;
+                oUl.style.marginTop = num>0? -num + 'px': num=0;
+            },5);
+        };
+        oBtn[1].onmouseup = function(){
+            clearInterval(timer);
+        };
+    }
+</script>
+</body>
+</html>

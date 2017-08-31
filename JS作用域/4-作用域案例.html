@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="按钮1" />
+<input type="button" value="按钮2" />
+<input type="button" value="按钮3" />
+
+<script type="text/javascript">
+    /*
+         错误执行
+
+         var oBtn = document.getElementsByTagName('input');
+
+         for(var i=0;i<oBtn.length;i++){
+             oBtn[i].onclick = function (){
+                alert(i); //3
+                oBtn[i].style.background = 'red';
+             }
+         }
+
+         //运行结果报错:Uncaught TypeError: Cannot read property 'style' of undefined at HTMLInputElement.oBtn.(anonymous function).onclick
+
+         运行机制:
+            1.通过for循环遍历添加点击事件
+            2.给全部按钮修改颜色
+
+            结果报错:
+                报错原因("i");
+                18: i = 3;
+            理由
+                for(var i=0;i<oBtn.length;i++)
+                for解析后相当于
+                var i = 3;
+                function fn1(){
+                    alert(i); //函数内部由内到外  找到全局变量i = 3;
+                }
+                oBtn[3].style.background = 'red';
+                oBtn[3]不存在抛出错误
+
+     */
+
+    /*
+        执行正确
+
+        //实现效果点击任意按钮全部变红
+        var oBtn = document.getElementsByTagName('input');
+
+        for(var i=0;i<oBtn.length;i++){
+             oBtn[i].onclick = function (){
+                for(var i=0;i<oBtn.length;i++){
+                    oBtn[i].style.background = 'red';
+                }
+             }
+        }
+
+        运行机制:
+           1.通过for循环遍历添加点击事件
+           2.给全部按钮修改颜色
+
+           结果:成功
+
+           理由:
+            for(var i=0;i<oBtn.length;i++){
+              oBtn[i].onclick = function (){
+                 alert(i); //undefined
+                 for(var i=0;i<oBtn.length;i++){
+                    oBtn[i].style.background = 'red';
+                 }
+              }
+            }
+
+            var i = 3;
+            function (){
+                var i = 0
+                oBtn[0].style.background = 'red';
+                i++;
+                i = 1
+                oBtn[1].style.background = 'red';
+                i++;
+                i = 2
+                oBtn[2].style.background = 'red';
+                i++;
+            }
+            执行成功
+
+            69:result i = 3
+
+            for循环带申明
+            var i = 3;
+            function (){
+                alert(i);
+                for(var i=0;i<oBtn.length;i++){
+                   oBtn[i].style.background = 'red';
+                }
+            }
+            等同于
+            function(){
+                alert(i);
+                var i = 3;
+            }
+            运行机制:
+                1.预加载找东西
+                    93: i = undefined;
+                2.解读代码
+                    92: i = undefined;
+
+
+            for循环无申明
+
+            var i = 3;
+            function fn(){
+                alert(i);//3
+                for(i = 0;i<3;i++){
+
+                }
+            }
+            fn()
+            116:result  = 3
+
+            运行机制:
+                1.预加载找东西
+                    114: i = undefined
+                    115 function fn(){ alert(i); for(i=0;i<3;i++) }
+                2.解读代码
+                    114:表达式赋值 i = 3
+                    115: 函数调用
+                        1.预加载找东西
+                            未找到
+                        2.解读代码
+                            未找到会向外面查找找到 全局 i = 3
+                            116: i = 3;
+                    121:result = 3
+
+
+     */
+    window.onload = function (){
+        //当前函数作用域
+
+        //实现效果点击任意按钮全部变红
+        var oBtn = document.getElementsByTagName('input');
+
+        for(var i=0;i<oBtn.length;i++){
+            oBtn[i].onclick = function (){
+                for(var i=0;i<oBtn.length;i++){
+                    oBtn[i].style.background = 'red';
+                }
+            }
+        }
+
+
+
+    }
+</script>
+</body>
+</html>

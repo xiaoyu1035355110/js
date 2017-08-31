@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<input type="button" id="btn1" value="按钮">
+<div id="div1"></div>
+
+<script type="text/javascript">
+    window.onload = function(){
+        getId('btn1').onclick = function(){
+            getId('div1').style.background = 'yellow';
+        };
+
+        function getId(id){
+            return document.getElementById(id);
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_379557_7pbo548v48v3g14i.css">
+    <style>
+        body{
+            background: #f1f1f1;
+        }
+        .container{
+            width:300px;
+            height:auto;
+            min-height: 400px;
+            border:solid 1px #D0D0D7;
+            -webkit-border-radius:10px;
+            -moz-border-radius:10px;
+            border-radius:10px;
+            margin: 150px auto;
+            background: #fff;
+            overflow: hidden;
+        }
+        ul{
+            margin:0;
+            padding:0;
+        }
+        ul li{
+            list-style: none;
+        }
+        .title ul{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background: #C0C4CB;
+        }
+        .title ul li{
+            cursor: pointer;
+            float: left;
+            height:35px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .title ul li.active{
+            color: #000;
+            font-weight: 600;
+            background: #E6EBF1;
+            padding: 0 5px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-top: 5px;
+            line-height: 35px;
+        }
+        .content{
+            background: #E6EBF1;
+            height:360px;
+            overflow: hidden;
+        }
+        .content ul{
+            display: none;
+        }
+        .content ul:first-child{
+            display: block;
+        }
+        .content ul li:first-child{
+            border-top: none;
+        }
+        .content ul li{
+            height:40px;
+            border-top: dashed 1px #BCC8D9;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .content ul li *{
+            display: inline-block;
+            height:36px;
+            line-height: 36px;
+            vertical-align: middle;
+            margin-top: 2px;
+        }
+        .content ul li img{
+            width:30px;
+            height:30px;
+            border-radius: 3px;
+        }
+        .content ul li span.sort{
+            width:15px;
+            height:15px;
+            border-radius: 3px;
+            line-height: 15px;
+            background: lightgray;
+            text-align: center;
+            border:solid 1px #ccc;
+            margin: 8px 10px 0px 10px;
+        }
+        .content ul li span.share{
+            width:30px;
+            text-align: center;
+            color: #8a939e;
+        }
+        .content ul li span.name{
+            width:170px;
+        }
+        .content ul li span.download{
+            display: none;
+        }
+        .content ul li.active{
+            height:60px;
+            position: relative;
+        }
+        .content ul li.active span.sort{
+            display: none;
+        }
+        .content ul li.active img{
+            width:46px;
+            height:46px;
+            margin: 7px 13px 0;
+        }
+        .content ul li.active span.download{
+            display: block;
+            position: absolute;
+            left:80px;
+            top:22px;
+            color: #8a939e;
+        }
+        .content ul li.active span.name{
+            position: absolute;
+            left:80px;
+            top:0px;
+        }
+        .content ul li.active span.share{
+            display: none;
+        }
+        .content ul li.active a{
+            position: absolute;
+            right:10px;
+            top:15px;
+            display: inline-block;
+            background: limegreen;
+            width:auto;
+            padding: 0 5px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            height:25px;
+            line-height: 25px;
+            vertical-align: top;
+        }
+        .content ul li.active a span{
+            display: inline-block;
+            vertical-align: top;
+            margin-top: -4px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row title">
+        <ul id="title">
+            <li class="active">一周热门</li>
+            <li>最高评分</li>
+            <li>最多分享</li>
+        </ul>
+    </div>
+    <div class="row content" id="cont">
+        <ul>
+            <li>
+                <span class="sort">1</span>
+                <img src="http://img1.imgtn.bdimg.com/it/u=1365151917,596151520&fm=26&gp=0.jpg" alt="">
+                <span class="name">成语故事1</span>
+                <span class="download">123465</span>
+                <span class="share">4.5</span>
+                <a href="javascript:;"><span class="iconfont icon-tianjia"></span>添加</a>
+            </li>
+            <li>
+                <span class="sort">1</span>
+                <img src="http://img1.imgtn.bdimg.com/it/u=1365151917,596151520&fm=26&gp=0.jpg" alt="">
+                <span class="name">成语故事1</span>
+                <span class="download">123465</span>
+                <span class="share">4.5</span>
+                <a href="javascript:;"><span class="iconfont icon-tianjia"></span>添加</a>
+            </li>
+            <li>
+                <span class="sort">1</span>
+                <img src="http://img1.imgtn.bdimg.com/it/u=1365151917,596151520&fm=26&gp=0.jpg" alt="">
+                <span class="name">成语故事1</span>
+                <span class="download">123465</span>
+                <span class="share">4.5</span>
+                <a href="javascript:;"><span class="iconfont icon-tianjia"></span>添加</a>
+            </li>
+            <li>
+                <span class="sort">1</span>
+                <img src="http://img1.imgtn.bdimg.com/it/u=1365151917,596151520&fm=26&gp=0.jpg" alt="">
+                <span class="name">成语故事1</span>
+                <span class="download">123465</span>
+                <span class="share">4.5</span>
+                <a href="javascript:;"><span class="iconfont icon-tianjia"></span>添加</a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <span class="sort">1</span>
+                <img src="http://img1.imgtn.bdimg.com/it/u=1365151917,596151520&fm=26&gp=0.jpg" alt="">
+                <span class="name">成语故事2</span>
+                <span class="download">123465</span>
+                <span class="share">4.5</span>
+                <a href="javascript:;"><span class="iconfont icon-tianjia"></span>添加</a>
+            </li>
+            <li>
+                <span class="sort">1</span>
+                <img src="http://img1.imgtn.bdimg.com/it/u=1365151917,596151520&fm=26&gp=0.jpg" alt="">
+                <span class="name">成语故事2</span>
+                <span class="download">123465</span>
+                <span class="share">4.5</span>
+                <a href="javascript:;"><span class="iconfont icon-tianjia"></span>添加</a>
+            </li>
+            <li>
+                <span class="sort">1</span>
+                <img src="http://img1.imgtn.bdimg.com/it/u=1365151917,596151520&fm=26&gp=0.jpg" alt="">
+                <span class="name">成语故事2</span>
+                <span class="download">123465</span>
+                <span class="share">4.5</span>
+                <a href="javascript:;"><span class="iconfont icon-tianjia"></span>添加</a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <span class="sort">1</span>
+                <img src="http://img1.imgtn.bdimg.com/it/u=1365151917,596151520&fm=26&gp=0.jpg" alt="">
+                <span class="name">成语故事3</span>
+                <span class="download">123465</span>
+                <span class="share">4.5</span>
+                <a href="javascript:;"><span class="iconfont icon-tianjia"></span>添加</a>
+            </li>
+            <li>
+                <span class="sort">1</span>
+                <img src="http://img1.imgtn.bdimg.com/it/u=1365151917,596151520&fm=26&gp=0.jpg" alt="">
+                <span class="name">成语故事2</span>
+                <span class="download">123465</span>
+                <span class="share">4.5</span>
+                <a href="javascript:;"><span class="iconfont icon-tianjia"></span>添加</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function (){
+        var title = document.getElementById('title');
+        var titleLi = title.getElementsByTagName('li');
+        var cont = document.getElementById('cont');
+        var aUl = cont.getElementsByTagName('ul');
+
+        for(var i=0;i<titleLi.length;i++){
+            titleLi[i].index = i;
+            hover(titleLi[i])
+        }
+
+        //标题事件
+        function hover(aLi){
+            aLi.onmouseover = function(){
+                for(var i=0;i<titleLi.length;i++){
+                    titleLi[i].className = '';
+                    aUl[i].style.display = 'none';
+                }
+                aUl[aLi.index].style.display = 'block';
+                aLi.className = 'active';
+                hoverLi(aLi.index);
+            };
+            hoverLi(aLi.index);
+        }
+        //列表事件
+        function hoverLi(i){
+            //获取不同内容区域
+            var contLi = aUl[i].getElementsByTagName('li');
+
+            //根据不同内容进行事件操作
+            for(var i=0;i<contLi.length;i++){
+
+                var aA = contLi[i].getElementsByTagName('a');
+
+                //移动放大
+                contLi[i].onmouseover = function(){
+                    for(var j=0;j<contLi.length;j++){
+
+                        contLi[j].index = j;
+                        contLi[j].className = '';
+                    }
+                    contLi[this.index].className = 'active';
+                };
+
+                //添加
+                for(var a=0;a<aA.length;a++){
+                    aA[a].onclick = function(){
+                        this.innerHTML = '已添加'
+                    }
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    //Number() 转换数字
+    //parseInt() 转换整数
+    //parseFloat 转换小数
+
+    /*
+        var a = '100';
+        alert(a + 100); //100100
+        alert(Number(a));//100
+        alert(Number(a) + 100);//200
+    */
+
+    /*
+        var a1 = '';
+        alert(Number(a1));//0
+    */
+
+    /*
+        var a2 = true; //true-1 false-0
+         var alert(Number(a2));//0
+     */
+
+    /*
+         // 数组没值为0,值为数字即返回,多个值或者不是非数字为NaN
+         var a3 = [1];
+         alert(Number(a3));// 1
+         var a3a = [];
+         alert(Number(a3a));//0
+         var a3b = ['123'];
+         alert(Number(a3b));//123
+         var a3c = ['abc'];
+         alert(Number(a3c));//NaN
+         var a3d = ['a','b','c'];
+         alert(Number(a3d));//NaN
+     */
+
+    /*
+        var a4 = null;
+        alert(Number(a4));//0
+     */
+
+    /*
+         //parseInt(变量,转换进制)  parseInt转换整数默认转换为10进制
+         var b = '200px';
+         alert(parseInt(b));//200
+    */
+
+    /*
+        //parseFloat()转换小数
+        var c = '200.123';
+        alert(parseFloat(c));//200.123
+    */
+
+    /*
+        //判断是否为小数
+        var test = '110.15';
+        if(parseInt(test) == parseFloat(test)){
+            alert(test + '为整数');
+        }else{
+            alert(test + '为小数');
+        }
+    */
+
+
+
+    ////////////////////////////////////////////////////////////////
+    //                        错误转换                             //
+
+    /*
+        //function不能被转换
+        var fn = function(){alert(1)};
+        alert(Number(fn));//NaN
+     */
+
+    /*
+        //json不能被转换
+        var json = {};
+        alert(Number(json));//NaN
+     */
+
+    /*
+        //未定义变量不能被转换
+        var u;
+        alert(Number(u));//NaN
+     */
+
+
+</script>
+<script type="text/javascript"></script>
+</body>
+</html>

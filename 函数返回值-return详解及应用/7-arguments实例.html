@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    //需求 sum(1,2,3,'+')
+    //需求 sum(10,2,3,4,'-')
+
+    function sum(){
+        var n = 0;
+        for(var i=0;i<arguments.length - 1;i++){
+            if(arguments[arguments.length -1] === '+'){
+                n += arguments[i];
+            }else if(arguments[arguments.length -1] === '-'){
+                if(arguments[i] >= arguments[0]){
+                    n = arguments[0];
+                }else{
+                    n -= arguments[i]
+                }
+
+            }
+
+        }
+        return n;
+    }
+    alert(sum(1,2,3,'+'));
+    alert(sum(25,10,2,3,4,'-'));
+</script>
+</body>
+</html>

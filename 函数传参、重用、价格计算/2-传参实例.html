@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: #333;
+        }
+        .box{
+            width:400px;
+            height:500px;
+            margin:50px auto;
+            position: relative;
+        }
+        .box span,
+        .box p{
+            display: block;
+            width:100%;
+            position: absolute;
+            left:0;
+            height:30px;
+            line-height: 30px;
+            text-align: center;
+            color: white;
+            background: rgba(0,0,0,0.5);
+        }
+        .box span{
+            top: 0;
+        }
+        .box p{
+            bottom: 0;
+            margin:0;
+        }
+        img{
+            width:100%;
+            height:100%;
+        }
+        .box ul{
+            position: absolute;
+            right:-70px;
+            top:0;
+            margin:0;
+        }
+        .box ul li{
+            list-style: none;
+            width:50px;
+            height:50px;
+            background: lightcoral;
+            margin-bottom: 10px;
+        }
+        .box ul li.active{
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div id="pic" class="box">
+    <span>页数正在加载..</span>
+    <p>图片正在加载..</p>
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1501740301128&di=8fc2552245b224c457bf4acac8bf2a4e&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20160903%2F53f54031b2ee4c2191370c98a12d8f83_th.gif" >
+    <ul></ul>
+</div>
+<div id="pic1" class="box">
+    <span>页数正在加载..</span>
+    <p>图片正在加载..</p>
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1501740301128&di=8fc2552245b224c457bf4acac8bf2a4e&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20160903%2F53f54031b2ee4c2191370c98a12d8f83_th.gif" >
+    <ul></ul>
+</div>
+
+<script type="text/javascript">
+    /*
+        重用代码:
+            1、尽量保证HTML代码结构一致,可以通过父级选取子元素
+            2、把核心主程序使用,用函数包起来
+            3、把每组里不同的值找出来,通过传参实现
+     */
+    window.onload = function(){
+
+       function Tab(id,arrUrl,arrText,evt){
+           var oDiv = document.getElementById(id);
+           var oSpan = oDiv.getElementsByTagName('span')[0];
+           var oP = oDiv.getElementsByTagName('p')[0];
+           var oImg = oDiv.getElementsByTagName('img')[0];
+           var oUl =oDiv.getElementsByTagName('ul')[0];
+           var aLi = oUl.getElementsByTagName('li');
+           var num = 0;
+
+           for(var i=0;i<arrUrl.length;i++){
+               oUl.innerHTML += '<li></li>';
+           }
+
+           for(var i=0;i<aLi.length;i++){
+               aLi[i].index = i;
+               aLi[i][evt] = function(){
+                   num = this.index;
+                   fnTab();
+               }
+           }
+
+           function fnTab(){
+               for(var i=0;i<aLi.length;i++){
+                   aLi[i].className='';
+               }
+               oSpan.innerHTML = num + 1 + '/'+ arrUrl.length;
+               oP.innerHTML = arrText[num];
+               oImg.src = arrUrl[num];
+               aLi[num].className='active';
+           }
+           fnTab();
+       }
+
+        Tab('pic',['https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2787454428,1181752000&fm=26&gp=0.jpg','https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3119249587,160531706&fm=26&gp=0.jpg','https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4064592170,1572555967&fm=26&gp=0.jpg','https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1546528642,1086830634&fm=26&gp=0.jpg'],['云山','小溪','绿叶','情侣'],'onclick');
+        Tab('pic1',['https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2787454428,1181752000&fm=26&gp=0.jpg','https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4064592170,1572555967&fm=26&gp=0.jpg','https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1546528642,1086830634&fm=26&gp=0.jpg'],['云山','绿叶','情侣'],'onmouseover');
+
+    }
+</script>
+</body>
+</html>

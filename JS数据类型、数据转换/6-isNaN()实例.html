@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text"/>
+<input type="button" value="判断是否位数字">
+<script type="text/javascript">
+    window.onload = function(){
+        var aInput = document.getElementsByTagName('input');
+        var str = '';
+        //alert(isNaN([])); //false
+        //alert(Number([])); // 0
+        aInput[1].onclick = function(){
+            str = aInput[0].value;
+            if(isNaN(str)){
+                alert(str + '不是数字');
+            }else{
+                alert(str + '是数字');
+            }
+        }
+    }
+</script>
+</body>
+</html>
