@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        img{
+            position: absolute;
+            top:150px;
+            left:25%;
+        }
+    </style>
+</head>
+<body>
+
+<img src="img/1.jpg" alt="">
+
+<script type="text/javascript">
+    window.onload = function () {
+        var oImg = document.getElementsByTagName('img')[0];
+        var pos = parseInt(getStyle(oImg,'left'));
+        var arr = [];
+        var num = 0;
+        var timer = null;
+
+        for(var i=20;i>0;i-=0.5){
+            arr.push(i,-i);
+        }
+        arr.push(num);
+
+        oImg.onclick = function(){
+            clearInterval(timer);
+
+            timer = setInterval(function(){
+                oImg.style.left = pos + arr[num] + 'px';
+                num++;
+
+                if(num === arr.length){
+                    clearInterval(timer);
+                    num = 0;
+                }
+            },10)
+
+        };
+
+        function getStyle(obj,attr){
+            return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+        }
+    }
+</script>
+</body>
+</html>
