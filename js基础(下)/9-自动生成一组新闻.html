@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="btn1" type="button" value="自动生成" />
+<ul id="list"></ul>
+<script>
+    window.onload = function (){
+        var arr = [
+            '我是第1条新闻',
+            '我是第2条新闻',
+            '我是第3条新闻',
+            '我是第4条新闻',
+            '我是第5条新闻'
+        ];
+        var oBtn = document.getElementById('btn1');
+        var oUl = document.getElementById('list');
+        var len = arr.length;
+        var onOff = true;
+
+        /*
+            解决重复添加的思路:
+            1.操作按钮上找麻烦(用户体验不好);
+            2.先清空、后添加(性能不太好)
+            3.判断
+         */
+
+        oBtn.onclick = function (){
+
+            //按钮上找麻烦
+            //oBtn.disabled = true;
+            //oBtn.style.display = 'none';
+
+            //先清空、后添加
+            //oUl.innerHTML = '';
+
+
+            //判断
+
+            //onOff = false;  //no!!!   代码自上而下执行
+
+            if(onOff){
+
+                //onOff = false;//ok
+
+                for(var i=0;i<len;i++){
+                    oUl.innerHTML += '<li>'+arr[i]+'</li>';
+                }
+
+                //onOff = false; //ok
+            }
+
+            onOff = false;//ok
+
+        }
+    }
+</script>
+</body>
+</html>

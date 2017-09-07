@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="按钮1"/>
+<input type="button" value="按钮2"/>
+<input type="button" value="按钮3"/>
+<p>a</p>
+<p>b</p>
+<p>c</p>
+<script>
+    window.onload = function (){
+        var oBtn = document.getElementsByTagName('input');
+        var oP = document.getElementsByTagName('p');
+
+        //想建立"匹配""对应"关系,就用索引值
+
+        var arr = ['张三','李四','王五'];
+
+        for(var i=0;i<oBtn.length;i++){
+
+            oBtn[i].index = i;
+
+            oBtn[i].onclick = function(){
+                this.value = arr[this.index];
+                oP[this.index].innerHTML = arr[this.index];
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

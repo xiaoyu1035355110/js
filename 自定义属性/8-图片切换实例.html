@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: #333;
+        }
+        ul{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        #pic{
+            width:400px;
+            height:500px;
+            position: relative;
+            margin: 0 auto;
+            background: #fff;
+        }
+        #pic img{
+            width:400px;
+            height:500px;
+            background: url("../img/loading.gif") no-repeat center;
+        }
+        #pic ul{
+            width:50px;
+            position: absolute;
+            top:0;
+            right: -60px;
+        }
+        #pic ul li{
+            width:50px;
+            height:50px;
+            background: #666;
+            margin-bottom: 4px;
+        }
+        #pic .active{
+            background: lightcoral;
+        }
+        #pic span,
+        #pic p{
+            position: absolute;
+            left:0;
+            width:400px;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+            color: #fff;
+            background: #000;
+        }
+        #pic span{
+            top:0;
+        }
+        #pic p{
+            bottom: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="pic">
+    <span>正在加载页码...</span>
+    <p>正在加载文字...</p>
+    <img src=""/>
+    <ul></ul>
+</div>
+
+<script>
+    window.onload = function(){
+        var arrUrl = ['../img/8.jpg','../img/9.jpg','../img/10.jpg','../img/11.jpg'];
+        var arrText = ['沙滩','小溪','夜色','山间'];
+
+        var oDiv = document.getElementById('pic');
+        var oSpan = oDiv.getElementsByTagName('span')[0];
+        var oP = oDiv.getElementsByTagName('p')[0];
+        var oImg = oDiv.getElementsByTagName('img')[0];
+        var oUl = oDiv.getElementsByTagName('ul')[0];
+        var aLi = oUl.getElementsByTagName('li');
+        var num = 0;
+
+        for(var i=0;i<arrUrl.length;i++){
+            oUl.innerHTML += '<li></li>';
+        }
+
+        //初始化
+        function fnTab(){
+            oSpan.innerHTML = (1+num) + ' / '+ arrUrl.length;
+            oP.innerHTML = arrText[num];
+            oImg.src = arrUrl[num];
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className = '';
+            }
+            aLi[num].className = 'active';
+        }
+        fnTab();
+
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onclick = function(){
+                num = this.index;
+                fnTab();
+            };
+        }
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img id="img1" src="../../img/1.jpg" />
+
+<script>
+    window.onload = function(){
+        var oImg = document.getElementById('img1');
+
+        oImg.onclick = function(){
+            //alert(oImg.src);
+            //../../img/1.jpg
+            //http://localhost:63342/JS/img/1.jpg
+            if(oImg.src == 'http://localhost:63342/JS/img/1.jpg'){
+                oImg.src = '../../img/2.jpg'
+            }
+
+            //所有的相对路径都别拿来做判断！！
+            //img src
+            //href='1.css' href='html/index.html'
+            //img src='http://www.baidu.com/1.jpg'    (绝对路径)
+
+            //颜色值不要拿来判断！！！
+            //color:red #F00 rgb(255,0,0)
+
+            //innerHTML值别拿来做判断
+        }
+    }
+    /*
+     技术上：必须能做到掌握兼容性(兼容性问题)
+     需求上：商量着来(提供最准确的呈现方案)
+
+     float
+     oDiv.style.float = 'left';//浏览器兼容
+     oDiv.style.styleFloat = 'left';//ie
+     oDiv.style.cssFloat = 'left';
+
+     IE(styleFloat)、非IE(cssFloat)
+
+     .left{float:left};
+     .right{float:right};
+
+     <div class='right'></div>
+    */
+</script>
+</body>
+</html>
