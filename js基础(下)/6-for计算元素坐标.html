@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            color: #fff;
+            background: red;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<script>
+    /*
+     循环到10
+     */
+    //    window.onload = function(){
+    //        var aDiv = document.getElementsByTagName('div');
+    //
+    //        for(var i=0;i<10;i++){
+    //            document.body.innerHTML += '<div>'+i+'</div>';
+    //        }
+    //
+    //        for(var j=0;j<aDiv.length;j++){
+    //            aDiv[j].style.left = 10 + j * 60 +'px';
+    //        }
+    //    }
+
+
+    /*
+     逢10换行
+     */
+    //    window.onload = function () {
+    //        var aDiv = document.getElementsByTagName('div');
+    //
+    //        for (var i = 0; i < 100; i++) {
+    //            document.body.innerHTML += '<div>' + i + '</div>';
+    //        }
+    //
+    //        for (var j = 0; j < aDiv.length; j++) {
+    //            aDiv[j].style.left = Math.floor(j / 10) * 60 + 'px';
+    //            aDiv[j].style.top = (j % 10) * 60 + 'px';
+    //        }
+    //
+    //    }
+
+
+    /*
+     V型
+     */
+    window.onload = function () {
+        var i = 0;
+        var x = 0;
+        var y = 0;
+        var aDiv = document.getElementsByTagName('div');
+
+        for (var i = 0; i < 11; i++) {
+            document.body.innerHTML += '<div>' + i + '</div>';
+        }
+
+        for (var j = 0; j < aDiv.length; j++) {
+
+            aDiv[j].style.left = j * 50 + 'px';
+            if (j < aDiv.length / 2) {
+                aDiv[j].style.top = j * 60 + 'px';
+            }
+            if(x < aDiv.length / 2){
+                x++;
+                console.log(x)
+            }
+            if(j<aDiv.length && j>aDiv.length/2-1){ //i>len/2-1 i=5时条件靠谱(如果len为12 i=6时条件才靠谱)
+                //6 < 11 && 6 > 5.5
+                //y = 1
+                //aDiv[6].style.top = ( 6 - 1 ) * 60 + 'px';
+
+                //7 < 11 && 7 > 5.5
+                //y = 2
+                //aDiv[7].style.top = ( 6 - 2 ) * 60 + 'px';
+
+                //10 < 11 && 10 > 5.5
+                //y = 6
+                //aDiv[10].style.top = ( 6 - 6 ) * 60 + 'px';
+                y++;
+                aDiv[j].style.top=(x-y)*60+'px';// i=5时  第6个div的top值等于 (x=6 y=0+1; 6-1=5; 5*60px=300px;)第6个DIV的top值为300px;与条件1重叠;当len的长度为双数时，不会漏掉div的top值；
+            }
+        }
+    }
+</script>
+</body>
+</html>

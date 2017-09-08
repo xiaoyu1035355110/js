@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="list">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<ol>
+    <li></li>
+    <li></li>
+    <li></li>
+</ol>
+<script>
+    window.onload = function (){
+        /*
+
+        #list var oUl = document.getElementById('list');   静态方法
+
+        li{} document.getElementsByTagName('li');   动态方法
+        #list li{} var aLi = oUl.getElementsByTagName('li');
+        //aLi => [li,li,li] 元素的集合
+        aLi.length  3
+        aLi[0]
+        //再用TagName的时候,必须加上:[]
+
+         */
+
+        /*
+        document.getElementById  与 document.getElementsByTagName 的区别
+        1.getElementById 只能跟在document下使用 而getElementByTagName可以跟元素也可以跟document
+        2.getElementById 获取的一个元素   而getElementByTagName获取的是元素的集合
+        3.getElementById 只查找一次后加载元素再找不会找到  而getElementByTagName后加载的元素再次访问是可以找到的
+         */
+
+        //var oUl = document.getElementById('list');
+        var oUl = document.getElementsByTagName('ul')[0];
+
+        var aLi = oUl.getElementsByTagName('li');
+        alert(aLi.length);
+
+        //document.getElementsByTagName('li')   length:6
+    }
+</script>
+</body>
+</html>

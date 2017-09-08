@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //document.title = 123;
+    //document.body.innerHTML = 'abc';
+
+    var oBtn = document.getElementsByTagName('input');
+
+    alert(oBtn.length);
+
+    document.body.innerHTML = '<input type="button" value="按钮"/><input type="button" value="按钮"/><input type="button" value="按钮"/>';
+
+    alert(oBtn.length);
+
+    oBtn[1].onclick = function(){
+        alert('我是第二个按钮');
+    }
+
+    //重复执行某些代码
+    //每次执行的时候,有个数字在变化
+</script>
+</body>
+</html>

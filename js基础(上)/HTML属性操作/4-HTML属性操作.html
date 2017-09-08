@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id='text1' type="text" value="">
+<input id="btn1" type="button" value="按钮">
+<p id="p1">这是一段文字</p>
+<script>
+/*
+    HTML属性操作：读、写
+        属性名
+        属性值
+
+    属性读操作：获取、找到
+        元素.属性名
+
+    字符串链接：
+
+    属性写的操作：('添加') 替换、修改
+        元素.属性名  = 新的值
+ */
+window.onload = function(){
+    var oBtn = document.getElementById('btn1');
+    var oText = document.getElementById('text1');
+    var oP = document.getElementById('p1');
+    oBtn.onclick = function(){
+        //alert(oP.innerHTML);
+        oP.innerHTML = oText.value;
+        oText.value = '';
+    }
+}
+</script>
+</body>
+</html>

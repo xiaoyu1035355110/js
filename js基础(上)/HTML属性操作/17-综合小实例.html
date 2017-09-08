@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #content{
+            width:400px;
+            height:400px;
+            border:solid 10px #ccc;
+            margin:40px auto 0;
+            position: relative;
+        }
+        #content a{
+            width:40px;
+            height:40px;
+            background: #000;
+            border:solid 5px #fff;
+            position: absolute;
+            top:175px;
+            text-decoration: none;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            font-size:30px;
+            font-weight: bold;
+            filter:alpha(opacity:40);
+            opacity: 0.4;
+        }
+        #content a:hover{
+            filter:alpha(opacity:90);
+            opacity: 0.9;
+        }
+        #prev{
+            left:10px;
+        }
+        #next{
+            right:10px;
+        }
+        #p1,#span1{
+            position: absolute;
+
+            left:0;
+            width:400px;
+            height:30px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            background: #000;
+            filter:alpha(opacity:80);
+            opacity: 0.8;
+        }
+        #p1{
+            bottom:0;
+            margin: 0;
+        }
+        #span1{
+            top:0;
+        }
+        #img1{
+            width:400px;
+            height:400px;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <a id="prev" href="javascript:void(0);"> > </a>
+    <a id="next" href="javascript:void(0);"> > </a>
+    <p id="p1">内容正在加载中...</p>
+    <span id="span1">数量正在加载中...</span>
+    <img id="img1" src=""/>
+</div>
+
+<script>
+    var oPrev = document.getElementById('prev');
+    var oNext = document.getElementById('next');
+    var oP = document.getElementById('p1');
+    var oSpan = document.getElementById('span1');
+    var oImg = document.getElementById('img1');
+
+    var arrImg = ['../../img/1.jpg','../../img/2.jpg','../../img/3.jpg','../../img/4.jpg','../../img/5.jpg'];
+    var arrText = ['外面的天气正在下雨~~','一个很漂亮的camera','呆萌的白色小狗','漂亮的金毛','小狗狗很萌'];
+
+    var num = 0;
+
+
+    function fnTab(){
+        oSpan.innerHTML = num + 1 +' / ' + arrImg.length;
+        oP.innerHTML = arrText[num];
+        oImg.src = arrImg[num];
+    }
+    fnTab();
+
+    oPrev.onclick = function(){
+
+        num--;
+        if(num == -1){
+            num = arrImg.length - 1;
+        }
+
+        fnTab();
+    };
+
+    oNext.onclick = function(){
+
+        num++;
+        if(num == arrImg.length){
+            num = 0;
+        }
+
+        fnTab();
+    };
+
+
+</script>
+</body>
+</html>

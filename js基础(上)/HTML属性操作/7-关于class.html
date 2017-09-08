@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width:240px;
+            height:200px;
+            border:solid 1px #333;
+            background: #f1f1f1;
+            padding: 10px;
+
+        }
+        .red{
+            width:300px;
+            color: yellow;
+            background: red;
+            border:solid 1px #333;
+            padding:10px;
+            word-wrap:break-word;
+        }
+        .yellow{
+            width:500px;
+            background: yellow;
+            color: red;
+            border:solid 1px lightcoral;
+            padding: 20px;
+            word-wrap:break-word;
+        }
+    </style>
+</head>
+<body>
+<input id="btn1" type="button" value="A-" />
+<input id="btn2" type="button" value="A+" />
+<input id="btn3" type="button" value="红" />
+<input id="btn4" type="button" value="黄" />
+<p id="p1">
+    var oDiv = document.getElementById('div1');
+    var oSpan = document.getElementById('span1');
+    var oText = document.getElementById('text1');
+    var oBtn = document.getElementById('btn1');
+</p>
+<script>
+    window.onload = function(){
+        var oBtn1 = document.getElementById('btn1');
+        var oBtn2 = document.getElementById('btn2');
+        var oBtn3 = document.getElementById('btn3');
+        var oBtn4 = document.getElementById('btn4');
+        var oP = document.getElementById('p1');
+        var num = 15;
+
+        oBtn1.onclick = function(){
+            num --;
+            oP.style.fontSize = num + 'px';
+        }
+
+        oBtn2.onclick = function(){
+            num ++;
+            oP.style.fontSize = num + 'px';
+        }
+
+        oBtn3.onclick = function(){
+            /*oP.style.width = '300px';
+            oP.style.color = 'red';
+            oP.style.background = 'yellow';
+            oP.style.border = 'solid 1px #333';
+            oP.style.padding = '10px';*/
+
+            //class 保留字 关键字：var function
+            //class => className
+
+            oP.className = 'red';
+        }
+
+        oBtn4.onclick = function(){
+            oP.className = 'yellow';
+        }
+    }
+</script>
+</body>
+</html>

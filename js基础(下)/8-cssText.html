@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            /*width:100px;*/
+            /*height:100px;*/
+            border:solid 1px red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">123</div>
+<input id="btn1" type="button" value="按钮"/>
+<script>
+    window.onload = function(){
+        var oDiv = document.getElementById('div1');
+        var oBtn = document.getElementById('btn1');
+        //cssText属性:
+        /*
+            1.该属性不会改变css的原本样式
+            2.通过js更改该属性  属性的样式不是叠加而是覆盖
+         */
+        oDiv.onclick = function (){
+            oDiv.style.cssText = 'width:200px;height:200px;';
+        };
+        oBtn.onclick = function (){
+            oDiv.style.cssText = 'width:100px;';
+        };
+    }
+</script>
+</body>
+</html>

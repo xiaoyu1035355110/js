@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="按钮">
+<input type="button" value="按钮">
+<input type="button" value="按钮">
+<script>
+    window.onload = function (){
+
+        //oBtn[0].abc = 123;
+        //alert(oBtn.abc);//123
+
+        //oBtn[0].abc = 456;
+
+
+        var oBtn = document.getElementsByTagName('input');
+        for(var i=0;i<oBtn.length;i++){
+            oBtn[i].abc = 123;
+            oBtn[i].onOff = true;
+            oBtn[i].onclick = function(){
+                console.log(this.abc+'==='+this.onOff);
+            }
+        }
+    }
+</script>
+</body>
+</html>

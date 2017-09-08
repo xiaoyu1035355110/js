@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="按钮1"/>
+<input type="button" value="按钮2"/>
+<input type="button" value="按钮3"/>
+
+<script>
+    window.onload = function (){
+        var oBtn = document.getElementsByTagName('input');
+
+        for(var i=0;i<oBtn.length;i++){
+
+            oBtn[i].index = i;//自定义属性(索引值)
+
+            oBtn[i].onclick = function(){
+                //alert(i);//3
+                alert(this.index);
+            }
+        }
+    }
+</script>
+</body>
+</html>

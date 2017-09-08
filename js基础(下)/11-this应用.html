@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            width:100px;
+            height:100px;
+            background: lightgoldenrodyellow;
+            border:solid 1px #e1e1e1;
+            position: relative;
+            float: left;
+            margin-right: 20px;
+        }
+        li div{
+            position: absolute;
+            top:50px;
+            left:10px;
+            width: 80px;
+            height:200px;
+            background: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <div></div>
+    </li>
+    <li>
+        <div></div>
+    </li>
+    <li>
+        <div></div>
+    </li>
+</ul>
+<script>
+    window.onload = function (){
+        var aLi = document.getElementsByTagName('li');
+        var len= aLi.length;
+        var that = null;
+        for(var i=0;i<len;i++){
+            aLi[i].onmouseover = function(){
+                //that = this;
+                this.getElementsByTagName('div')[0].style.display = 'block';
+            }
+            aLi[i].onmouseout = function(){
+                //that = this;
+                this.getElementsByTagName('div')[0].style.display = 'none';
+            }
+
+//            function fn1(){
+//                that.getElementsByTagName('div')[0].style.display = 'block';
+//            }
+        }
+    }
+</script>
+</body>
+</html>
