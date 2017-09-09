@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            width:600px;
+            height:460px;
+            margin:150px auto;
+            overflow: hidden;
+        }
+        img{
+            width:600px;
+            height:460px;
+        }
+        .container > div{
+            width:600px;
+            height:460px;
+            position: relative;
+            float: left;
+        }
+        .container > div > div{
+            background: rgba(0,0,0,0.7);
+            position: absolute;
+            left:0;
+            bottom:0;
+            color: #fff;
+            padding:15px;
+            min-height:80px;
+            height:auto;
+            width:100%;
+            box-sizing: border-box;
+        }
+        .container > div > div p{
+            margin-bottom: 5px;
+        }
+        .container > div > div span{
+            display: inline-block;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="carousel">
+    <div>
+        <img src="img/1.jpg" alt="">
+        <div>
+            <p>第一张图</p>
+            <span>第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介第一张图简介</span>
+        </div>
+    </div>
+    <div>
+        <img src="img/2.jpg" alt="">
+        <div>
+            <p>第二张图</p>
+            <span>第二张图简介</span>
+        </div>
+    </div>
+    <div>
+        <img src="img/3.jpg" alt="">
+        <div>
+            <p>第三张图</p>
+            <span>第三张图简介</span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function (){
+        var aDiv = document.getElementById('carousel');
+
+
+
+    }
+</script>
+</body>
+</html>

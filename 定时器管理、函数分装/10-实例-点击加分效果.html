@@ -74,35 +74,46 @@
        var onOff = true;
        var timer = null;
 
-
+       //li 排版
        for(var i=0;i<aLi.length;i++){
            aLi[i].style.left = i * 50+'px';
        }
 
+
        oUl.onclick = function(){
 
+           //第一次点击为true
            if( onOff ){
 
+               //点击后改变状态为false
                onOff = false;
 
                var iNow = 0;
 
+               //执行背景透明  30秒 0.4~1  在 1~0
                opacity(oDiv2,4,100,function(){
                    opacity(oDiv2,4,0,function(){
+
+                       //执行重置函数
                         fnReset();
                    })
                });
 
+               //执行div运动
                doMove(oDiv2,'width',14,500);
 
+
+               //定时器开始
                timer = setInterval(function(){
 
-
-                   opacity(aLi[iNow],4,20);
+                   //执行每个li的透明
+                   opacity(aLi[iNow],4,0);
+                   //执行每个li的运动
                    doMove(aLi[iNow],'top',6,-100);
 
                    iNow++;
 
+                   //如果iNow的个数 === li的个数  清除当前定时器
                    if(iNow === aLi.length){
                        clearInterval(timer);
                    }
@@ -115,20 +126,29 @@
 
        function fnReset(){
            var num = 0;
+           //重置div的宽度
            oDiv2.style.width = 0;
+
            for(var i=0;i<aLi.length;i++){
+               //重置li的top值
                aLi[i].style.top = 0;
+
+               //重置li的透明度恢复到1
                opacity(aLi[i],5,100,function(){
                    num++;
                    if(num === aLi.length){
+                       //重置按钮的状态
                        onOff = true;
                    }
                })
            }
        }
 
+       //透明函数
        function opacity(obj,dir,target,callback){
+
            dir = getStyle(obj,'opacity')*100 < target ? dir : -dir;
+
            clearInterval(obj.opacityTimer);
 
            obj.opacityTimer = setInterval(function(){
@@ -138,6 +158,7 @@
                if(speed > target && dir > 0 || speed < target && dir < 0){
                    speed = target;
                }
+
 
                obj.style.opacity = speed / 100;
                obj.style.filter = 'alpha(alpha:'+speed+')';
